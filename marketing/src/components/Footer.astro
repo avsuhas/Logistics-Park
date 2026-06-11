@@ -1,0 +1,49 @@
+---
+import { site } from '../data/site';
+---
+
+<footer class="bg-charcoal text-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div>
+        <h3 class="text-xl font-bold mb-2">{site.name}</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">{site.description}</p>
+      </div>
+
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">
+          Contact
+        </h4>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href={`tel:${site.phone.replace(/\s/g, '')}`} class="hover:text-accent transition-colors">
+              {site.phone}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${site.email}`} class="hover:text-accent transition-colors">
+              {site.email}
+            </a>
+          </li>
+          <li class="text-gray-400">{site.address}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">
+          Positioning
+        </h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li>Foxconn Corridor Logistics Hub</li>
+          <li>Devanahalli Industrial Spaces</li>
+          <li>Airport Corridor Industrial Park</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-gray-700 flex flex-col sm:flex-row justify-between gap-4 text-xs text-gray-500">
+      <p>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+      <p>Industrial land & ready sheds near Foxconn, Devanahalli</p>
+    </div>
+  </div>
+</footer>

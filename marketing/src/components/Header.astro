@@ -1,0 +1,48 @@
+---
+import { site } from '../data/site';
+
+const navLinks = [
+  { href: '#location', label: 'Location' },
+  { href: '#property', label: 'Property' },
+  { href: '#calculator', label: 'Space Planner' },
+  { href: '#master-plan', label: 'Master Plan' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <a href="#" class="flex flex-col leading-tight">
+        <span class="text-lg lg:text-xl font-bold tracking-tight text-charcoal"
+          >{site.name}</span
+        >
+        <span class="text-[10px] lg:text-xs font-medium text-steel uppercase tracking-widest"
+          >{site.tagline}</span
+        >
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm font-medium text-steel hover:text-charcoal transition-colors"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <a
+        href="#contact"
+        class="inline-flex items-center px-4 py-2 lg:px-5 lg:py-2.5 text-sm font-semibold text-white bg-accent hover:bg-accent-hover transition-colors rounded-sm"
+      >
+        Schedule Site Visit
+      </a>
+    </div>
+  </div>
+</header>

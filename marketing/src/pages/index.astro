@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import WhyLocation from '../components/WhyLocation.astro';
+import LocationMap from '../components/LocationMap.astro';
+import PropertyOverview from '../components/PropertyOverview.astro';
+import SuitableFor from '../components/SuitableFor.astro';
+import MasterPlan from '../components/MasterPlan.astro';
+import DroneVideo from '../components/DroneVideo.astro';
+import TrustSection from '../components/TrustSection.astro';
+import SpaceCalculator from '../components/SpaceCalculator';
+import BrochureDownload from '../components/BrochureDownload';
+import LeadForm from '../components/LeadForm';
+import { site } from '../data/site';
+---
+
+<Layout
+  title={`${site.name} | Industrial Land & Ready Sheds Near Foxconn`}
+  description={site.description}
+>
+  <Hero />
+  <WhyLocation />
+  <LocationMap />
+  <PropertyOverview />
+  <SpaceCalculator client:load />
+  <SuitableFor />
+  <MasterPlan />
+  <DroneVideo />
+  <BrochureDownload client:load />
+  <LeadForm client:load />
+  <TrustSection />
+</Layout>

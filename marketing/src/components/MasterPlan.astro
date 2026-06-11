@@ -1,0 +1,80 @@
+---
+import { masterPlanPhases, site } from '../data/site';
+
+const masterPlanImage =
+  "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80";
+
+const statusStyles: Record<string, string> = {
+  available: "bg-green-100 text-green-800",
+  planned: "bg-amber-100 text-amber-800",
+  vision: "bg-blue-100 text-blue-800",
+};
+
+const statusLabels: Record<string, string> = {
+  available: "Available Now",
+  planned: "Build-to-Suit",
+  vision: "Future Vision",
+};
+---
+
+<section id="master-plan" class="py-20 lg:py-28 bg-charcoal text-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">
+          Master Plan Vision
+        </h2>
+        <p class="mt-4 text-gray-400 text-lg leading-relaxed">
+          Tenants lease based on future confidence. {site.name} is planned as a
+          phased industrial development — from immediate yard operations to a
+          full logistics park.
+        </p>
+
+        <div class="mt-10 space-y-6">
+          {
+            masterPlanPhases.map((phase) => (
+              <div class="border border-gray-700 rounded-sm p-6 hover:border-accent/50 transition-colors">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-sm font-bold text-accent">{phase.phase}</span>
+                  <span
+                    class={`text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded-sm ${statusStyles[phase.status]}`}
+                  >
+                    {statusLabels[phase.status]}
+                  </span>
+                </div>
+                <h3 class="text-xl font-bold">{phase.title}</h3>
+                <p class="mt-2 text-gray-400 text-sm leading-relaxed">{phase.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="relative aspect-[4/3] rounded-sm overflow-hidden border border-gray-700">
+          <img
+            src={masterPlanImage}
+            alt="Master plan vision rendering of industrial park development"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal/60 to-transparent" />
+        </div>
+        <div class="absolute bottom-6 left-6 right-6 grid grid-cols-3 gap-3">
+          <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-3 text-center">
+            <p class="text-xs text-gray-300 uppercase tracking-wider">Phase 1</p>
+            <p class="text-sm font-bold mt-1">Open Yard</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-3 text-center">
+            <p class="text-xs text-gray-300 uppercase tracking-wider">Phase 2</p>
+            <p class="text-sm font-bold mt-1">Sheds</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-3 text-center">
+            <p class="text-xs text-gray-300 uppercase tracking-wider">Phase 3</p>
+            <p class="text-sm font-bold mt-1">Logistics Park</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

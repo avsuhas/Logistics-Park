@@ -1,0 +1,65 @@
+---
+const videoPoster =
+  "https://images.unsplash.com/photo-1581094794329-cd811886a5d8?w=1920&q=80";
+
+const overlays = [
+  "Near Foxconn",
+  "Airport Corridor",
+  "Industrial Growth Zone",
+  "Ready For Development",
+];
+---
+
+<section class="relative py-20 lg:py-0 bg-charcoal-light">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-white tracking-tight">
+        Aerial Site Overview
+      </h2>
+      <p class="mt-4 text-gray-400 text-lg">
+        Highway access, frontage, surrounding developments, and nearby industrial
+        growth — see the property from above.
+      </p>
+    </div>
+
+    <div class="relative aspect-video rounded-sm overflow-hidden border border-gray-700 group">
+      <img
+        src={videoPoster}
+        alt="Drone flyover of industrial property near Devanahalli"
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-charcoal/40 group-hover:bg-charcoal/30 transition-colors" />
+
+      <!-- Video placeholder — replace src with actual drone footage -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <button
+          type="button"
+          class="w-20 h-20 flex items-center justify-center rounded-full bg-accent hover:bg-accent-hover transition-colors shadow-2xl"
+          aria-label="Play drone flyover video"
+        >
+          <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
+        <div class="flex flex-wrap gap-3">
+          {
+            overlays.map((text) => (
+              <span class="px-4 py-2 bg-charcoal/80 backdrop-blur-sm border border-gray-600 text-white text-sm font-semibold rounded-sm">
+                {text}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-6 text-center text-sm text-gray-500">
+      Replace with your 60–90 second drone flyover video showing highway access,
+      frontage, and surrounding industrial growth.
+    </p>
+  </div>
+</section>
