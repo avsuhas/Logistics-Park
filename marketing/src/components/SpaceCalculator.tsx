@@ -108,22 +108,22 @@ function LayoutDiagram({ type, sqft }: { type: SpaceType; sqft: number }) {
         width={w}
         height={h}
         fill={type === "yard" ? "#e5e7eb" : "#1c1c1e"}
-        stroke="#c45a11"
+        stroke="#c8762a"
         strokeWidth="2"
         rx="2"
       />
       {type === "warehouse" && (
         <>
-          <rect x={160 - w / 2} y={110 - h / 2 - 8} width={w * 0.3} height="8" fill="#c45a11" />
-          <rect x={160 - w / 2 + w * 0.35} y={110 - h / 2 - 8} width={w * 0.3} height="8" fill="#c45a11" />
+          <rect x={160 - w / 2} y={110 - h / 2 - 8} width={w * 0.3} height="8" fill="#c8762a" />
+          <rect x={160 - w / 2 + w * 0.35} y={110 - h / 2 - 8} width={w * 0.3} height="8" fill="#c8762a" />
         </>
       )}
       <rect x="10" y="10" width="300" height="20" fill="none" stroke="#9ca3af" strokeWidth="1" strokeDasharray="4 2" />
       <text x="160" y="24" textAnchor="middle" fill="#6b7280" fontSize="9" fontWeight="600">
         HIGHWAY FRONTAGE
       </text>
-      <path d="M 30 195 L 60 195 L 60 185 L 90 195" fill="none" stroke="#c45a11" strokeWidth="1.5" />
-      <text x="100" y="198" fill="#c45a11" fontSize="8" fontWeight="600">
+      <path d="M 30 195 L 60 195 L 60 185 L 90 195" fill="none" stroke="#c8762a" strokeWidth="1.5" />
+      <text x="100" y="198" fill="#c8762a" fontSize="8" fontWeight="600">
         TRUCK ACCESS
       </text>
       {type !== "yard" && (
@@ -144,7 +144,7 @@ export default function SpaceCalculator() {
   const layout = useMemo(() => calculateLayout(sqft, type), [sqft, type]);
 
   return (
-    <section id="calculator" className="py-20 lg:py-28 bg-gray-50">
+    <section id="calculator" className="py-20 lg:py-28 bg-cream">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-charcoal tracking-tight">

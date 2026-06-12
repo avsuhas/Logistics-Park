@@ -1,6 +1,5 @@
 ---
-const heroImage =
-  "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1920&q=85";
+const heroImage = "/images/hero-park.png";
 
 const suitableFor = [
   "Warehousing",
@@ -11,39 +10,61 @@ const suitableFor = [
 ];
 ---
 
-<section class="relative min-h-screen flex items-center pt-16">
+<section class="relative min-h-screen flex items-center pt-16 overflow-hidden">
   <div class="absolute inset-0">
     <img
       src={heroImage}
-      alt="Industrial highway frontage with trucks and warehouse sheds near Devanahalli"
-      class="w-full h-full object-cover"
+      alt="Aerial view of Meridian Industrial Park master plan with warehouses and logistics facilities"
+      class="hero-image w-full h-full object-cover object-center scale-105"
       loading="eager"
     />
-    <div class="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/75 to-charcoal/50"></div>
+    <!-- Narrow left vignette — keeps the right side of the image bright and crisp -->
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-charcoal/85 from-0% via-charcoal/40 via-40% to-transparent to-70%"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-charcoal/60 to-transparent"
+    >
+    </div>
   </div>
 
-  <div class="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
-    <div class="max-w-3xl">
-      <p class="text-accent font-semibold text-sm uppercase tracking-widest mb-4">
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32 w-full">
+    <div class="max-w-2xl">
+      <p
+        class="inline-block text-accent-light font-bold text-xs uppercase tracking-[0.2em] mb-5 px-3 py-1.5 bg-charcoal/70 backdrop-blur-sm rounded-sm border border-accent/50"
+      >
         Airport Corridor Industrial Park
       </p>
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight">
+
+      <h1
+        class="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-white leading-[1.08] tracking-tight drop-shadow-sm"
+      >
         Industrial Land &amp; Ready Sheds Near Foxconn
       </h1>
-      <p class="mt-6 text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl">
+
+      <p
+        class="mt-6 text-lg lg:text-xl text-white/90 leading-relaxed max-w-xl font-medium"
+      >
         Highway-facing industrial property strategically located on
         Devanahalli–Doddaballapur Main Road.
       </p>
 
       <div class="mt-8">
-        <p class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+        <p
+          class="text-xs font-bold text-white/70 uppercase tracking-[0.15em] mb-3"
+        >
           Suitable for
         </p>
-        <ul class="flex flex-wrap gap-x-6 gap-y-2">
+        <ul class="flex flex-wrap gap-2">
           {
             suitableFor.map((item) => (
-              <li class="flex items-center gap-2 text-white text-sm lg:text-base">
-                <svg class="w-4 h-4 text-accent shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <li class="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-accent/25 text-white text-sm font-medium px-3 py-1.5 rounded-sm">
+                <svg
+                  class="w-3.5 h-3.5 text-accent-light shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
                   <path
                     fill-rule="evenodd"
                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -60,13 +81,13 @@ const suitableFor = [
       <div class="mt-10 flex flex-col sm:flex-row gap-4">
         <a
           href="#contact"
-          class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-accent hover:bg-accent-hover transition-colors rounded-sm"
+          class="btn-primary inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white rounded-sm"
         >
           Schedule Site Visit
         </a>
         <a
           href="#brochure"
-          class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white border border-white/30 hover:bg-white/10 transition-colors rounded-sm"
+          class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-charcoal bg-white hover:bg-cream border-2 border-white transition-all rounded-sm"
         >
           Download Brochure
         </a>

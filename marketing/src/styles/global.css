@@ -1,11 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-charcoal: #1c1c1e;
-  --color-charcoal-light: #2c2c2e;
-  --color-steel: #4a5568;
-  --color-accent: #c45a11;
-  --color-accent-hover: #a34a0e;
+  /* Midnight slate — rich navy undertone */
+  --color-charcoal: #0c1222;
+  --color-charcoal-light: #1a2332;
+  --color-steel: #64748b;
+  /* Warm copper accent — pairs with beige buildings in hero image */
+  --color-accent: #c8762a;
+  --color-accent-hover: #a8621f;
+  --color-accent-light: #f0c078;
+  --color-cream: #f8f6f3;
+  --color-warm-white: #ffffff;
+  --color-sand: #e8e4df;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -16,4 +22,26 @@ html {
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: #c8762a33;
+  color: var(--color-charcoal);
+}
+
+.hero-image {
+  filter: brightness(1.06) contrast(1.1) saturate(1.15);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+  box-shadow: 0 2px 16px rgba(200, 118, 42, 0.45);
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 4px 24px rgba(200, 118, 42, 0.55);
+  transform: translateY(-1px);
 }
