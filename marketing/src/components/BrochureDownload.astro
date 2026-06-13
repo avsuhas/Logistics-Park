@@ -1,8 +1,6 @@
 ---
 import { site } from '../data/site';
 
-const success = Astro.url.searchParams.get('success') === 'brochure';
-
 const brochureItems = [
   'Survey sketch & measurements',
   'Location & connectivity maps',
@@ -40,120 +38,125 @@ const brochureItems = [
       </div>
 
       <div class="bg-gray-50 border border-gray-200 rounded-sm p-8">
-        {success ? (
-          <div class="text-center py-8">
-            <div class="w-16 h-16 mx-auto flex items-center justify-center bg-green-100 rounded-full mb-4">
-              <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-charcoal">Brochure Ready</h3>
-            <p class="mt-2 text-steel">
-              Check your email for the download link. Our team may follow up to
-              discuss your requirements.
-            </p>
-            <a
-              href={site.brochurePdf}
-              download
-              class="inline-flex items-center justify-center mt-6 px-6 py-3 text-sm font-semibold text-white bg-accent hover:bg-accent-hover transition-colors rounded-sm"
-            >
-              Download PDF Now
-            </a>
-            <a
-              href="/#brochure"
-              class="block mx-auto mt-4 text-sm text-steel hover:text-charcoal"
-            >
-              Submit another request
-            </a>
+        <div
+          id="brochure-success"
+          hidden
+          class="bg-green-50 border border-green-200 rounded-sm p-8 text-center"
+        >
+          <div class="w-16 h-16 mx-auto flex items-center justify-center bg-green-100 rounded-full mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
           </div>
-        ) : (
-          <form
-            name="brochure"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            action="/?success=brochure#brochure"
-            class="space-y-5"
+          <h3 class="text-xl font-bold text-green-700">Request Received</h3>
+          <p class="mt-3 text-steel leading-relaxed">
+            Thank you for your interest in {site.name}. Your brochure request has been
+            received — download the PDF below, and our team may follow up to discuss your requirements.
+          </p>
+          <a
+            href={site.brochurePdf}
+            download
+            class="inline-flex items-center justify-center mt-6 px-6 py-3 text-sm font-semibold text-white bg-accent hover:bg-accent-hover transition-colors rounded-sm"
           >
-            <input type="hidden" name="form-name" value="brochure" />
-            <p class="hidden" aria-hidden="true">
-              <label>
-                Don't fill this out: <input name="bot-field" />
-              </label>
-            </p>
+            Download PDF Now
+          </a>
+          <button
+            type="button"
+            data-reset-form
+            class="block mx-auto mt-4 text-sm text-accent hover:underline"
+          >
+            Submit another request
+          </button>
+        </div>
 
-            <p class="text-sm text-steel">
-              Complete the form below to receive the property brochure.
-            </p>
+        <form
+          id="brochure-form"
+          name="brochure"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="space-y-5"
+        >
+          <input type="hidden" name="form-name" value="brochure" />
+          <p class="hidden" aria-hidden="true">
+            <label>
+              Don't fill this out: <input name="bot-field" />
+            </label>
+          </p>
 
-            <div>
-              <label for="brochure-name" class="block text-sm font-medium text-charcoal mb-2">
-                Name *
-              </label>
-              <input
-                id="brochure-name"
-                name="name"
-                type="text"
-                required
-                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm focus:outline-none focus:border-accent"
-                placeholder="Your name"
-              />
-            </div>
+          <p class="text-sm text-steel">
+            Complete the form below to receive the property brochure.
+          </p>
 
-            <div>
-              <label for="brochure-company" class="block text-sm font-medium text-charcoal mb-2">
-                Company *
-              </label>
-              <input
-                id="brochure-company"
-                name="company"
-                type="text"
-                required
-                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm focus:outline-none focus:border-accent"
-                placeholder="Company name"
-              />
-            </div>
+          <div>
+            <label for="brochure-name" class="block text-sm font-medium text-charcoal mb-2">
+              Name *
+            </label>
+            <input
+              id="brochure-name"
+              name="name"
+              type="text"
+              required
+              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm focus:outline-none focus:border-accent"
+              placeholder="Your name"
+            />
+          </div>
 
-            <div>
-              <label for="brochure-email" class="block text-sm font-medium text-charcoal mb-2">
-                Email *
-              </label>
-              <input
-                id="brochure-email"
-                name="email"
-                type="email"
-                required
-                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm focus:outline-none focus:border-accent"
-                placeholder="you@company.com"
-              />
-            </div>
+          <div>
+            <label for="brochure-company" class="block text-sm font-medium text-charcoal mb-2">
+              Company *
+            </label>
+            <input
+              id="brochure-company"
+              name="company"
+              type="text"
+              required
+              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm focus:outline-none focus:border-accent"
+              placeholder="Company name"
+            />
+          </div>
 
-            <div>
-              <label for="brochure-phone" class="block text-sm font-medium text-charcoal mb-2">
-                Phone *
-              </label>
-              <input
-                id="brochure-phone"
-                name="phone"
-                type="tel"
-                required
-                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm focus:outline-none focus:border-accent"
-                placeholder="+91"
-              />
-            </div>
+          <div>
+            <label for="brochure-email" class="block text-sm font-medium text-charcoal mb-2">
+              Email *
+            </label>
+            <input
+              id="brochure-email"
+              name="email"
+              type="email"
+              required
+              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm focus:outline-none focus:border-accent"
+              placeholder="you@company.com"
+            />
+          </div>
 
-            <button
-              type="submit"
-              class="w-full px-6 py-3 text-sm font-semibold text-white bg-accent hover:bg-accent-hover transition-colors rounded-sm"
-            >
-              Download Property Brochure
-            </button>
-          </form>
-        )}
+          <div>
+            <label for="brochure-phone" class="block text-sm font-medium text-charcoal mb-2">
+              Phone *
+            </label>
+            <input
+              id="brochure-phone"
+              name="phone"
+              type="tel"
+              required
+              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm focus:outline-none focus:border-accent"
+              placeholder="+91"
+            />
+          </div>
+
+          <p id="brochure-error" hidden class="text-red-600 text-sm"></p>
+
+          <button
+            type="submit"
+            class="w-full px-6 py-3 text-sm font-semibold text-white bg-accent hover:bg-accent-hover disabled:opacity-60 transition-colors rounded-sm"
+          >
+            Download Property Brochure
+          </button>
+        </form>
       </div>
     </div>
   </div>

@@ -30,3 +30,19 @@ import { site } from '../data/site';
   <LeadForm />
   <TrustSection />
 </Layout>
+
+<script>
+  import { initNetlifyForm } from '../scripts/netlify-form';
+
+  initNetlifyForm('site-visit-form', 'site-visit-success', {
+    errorId: 'site-visit-error',
+    submitLabel: 'Submit Request',
+    submittingLabel: 'Submitting...',
+  });
+
+  initNetlifyForm('brochure-form', 'brochure-success', {
+    errorId: 'brochure-error',
+    submitLabel: 'Download Property Brochure',
+    submittingLabel: 'Processing...',
+  });
+</script>
