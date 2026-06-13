@@ -1,39 +1,26 @@
 import { useState, type FormEvent } from "react";
 import { site } from "../data/site";
-
-const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_BROCHURE || "";
+import { FORM_NAMES, submitNetlifyForm } from "../lib/netlify-form";
 
 export default function BrochureDownload() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("submitting");
+    setErrorMessage("");
 
     const form = e.currentTarget;
     const data = new FormData(form);
+    const result = await submitNetlifyForm(FORM_NAMES.brochure, data);
 
-    if (!FORMSPREE_ID) {
+    if (result.ok) {
       setStatus("success");
       form.reset();
-      return;
-    }
-
-    try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
-      });
-
-      if (res.ok) {
-        setStatus("success");
-        form.reset();
-      } else {
-        setStatus("error");
-      }
-    } catch {
+    } else {
       setStatus("error");
+      setErrorMessage(result.error || "Something went wrong. Please try again.");
     }
   }
 
@@ -101,7 +88,18 @@ export default function BrochureDownload() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form
+                name={FORM_NAMES.brochure}
+                onSubmit={handleSubmit}
+                className="space-y-5"
+              >
+                <input type="hidden" name="form-name" value={FORM_NAMES.brochure} />
+                <p className="hidden" aria-hidden="true">
+                  <label>
+                    Don't fill this out: <input name="bot-field" />
+                  </label>
+                </p>
+
                 <p className="text-sm text-steel">
                   Complete the form below to receive the property brochure.
                 </p>
@@ -163,7 +161,9 @@ export default function BrochureDownload() {
                 </div>
 
                 {status === "error" && (
-                  <p className="text-red-600 text-sm">Something went wrong. Please try again.</p>
+                  <p className="text-red-600 text-sm">
+                    {errorMessage || "Something went wrong. Please try again."}
+                  </p>
                 )}
 
                 <button

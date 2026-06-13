@@ -1,7 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { site } from "../data/site";
-
-const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_SITE_VISIT || "";
+import { FORM_NAMES, submitNetlifyForm } from "../lib/netlify-form";
 
 const TIMELINES = [
   "Immediate (0–3 months)",
@@ -21,35 +20,23 @@ const AREA_OPTIONS = [
 
 export default function LeadForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("submitting");
+    setErrorMessage("");
 
     const form = e.currentTarget;
     const data = new FormData(form);
+    const result = await submitNetlifyForm(FORM_NAMES.siteVisit, data);
 
-    if (!FORMSPREE_ID) {
+    if (result.ok) {
       setStatus("success");
       form.reset();
-      return;
-    }
-
-    try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
-      });
-
-      if (res.ok) {
-        setStatus("success");
-        form.reset();
-      } else {
-        setStatus("error");
-      }
-    } catch {
+    } else {
       setStatus("error");
+      setErrorMessage(result.error || "Something went wrong. Please try again.");
     }
   }
 
@@ -82,9 +69,17 @@ export default function LeadForm() {
           </div>
         ) : (
           <form
+            name={FORM_NAMES.siteVisit}
             onSubmit={handleSubmit}
             className="space-y-6 bg-charcoal-light border border-gray-700 rounded-sm p-8"
           >
+            <input type="hidden" name="form-name" value={FORM_NAMES.siteVisit} />
+            <p className="hidden" aria-hidden="true">
+              <label>
+                Don't fill this out: <input name="bot-field" />
+              </label>
+            </p>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -190,7 +185,7 @@ export default function LeadForm() {
 
             {status === "error" && (
               <p className="text-red-400 text-sm">
-                Something went wrong. Please try again or email us directly.
+                {errorMessage || "Something went wrong. Please try again or email us directly."}
               </p>
             )}
 

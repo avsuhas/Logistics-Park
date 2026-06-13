@@ -5,7 +5,7 @@ export const site = {
   description:
     "Flexible industrial land, logistics yard & build-to-suit sheds near Devanahalli on the Airport Corridor.",
   phone: "+91 9342968842",
-  email: "leasing@meridianindustrial.in",
+  email: "avsuhas@gmail.com",
   brochurePdf: "/brochure/meridian-industrial-park.pdf",
   address: "Bashettihalli, Devanahalli–Doddaballapur Main Road, Karnataka, India",
   coordinates: { lat: 13.288753, lng: 77.578379 },
@@ -16,7 +16,7 @@ export const site = {
 } as const;
 
 export const landmarks = [
-  { name: "Foxconn Corridor", distance: "18 km", time: "19 min" },
+  { name: "Foxconn Corridor", distance: "5 km", time: "9 min" },
   { name: "Kempegowda International Airport", distance: "26 km", time: "25 min" },
   { name: "Aerospace Park", distance: "18 km", time: "17 min" },
   { name: "NH44 (Bellary Road)", distance: "17 km", time: "15 min" },
@@ -26,7 +26,7 @@ export const landmarks = [
 export const locationHighlights = [
   {
     icon: "factory",
-    title: "19 mins",
+    title: "9 mins",
     subtitle: "From Foxconn Ecosystem",
   },
   {
