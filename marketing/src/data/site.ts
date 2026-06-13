@@ -48,7 +48,7 @@ export const locationHighlights = [
 
 export const propertySpecs = [
   { label: "Land Area", value: "3 Acres", icon: "land" },
-  { label: "Frontage", value: "138.6 Feet", icon: "frontage" },
+  { label: "Frontage", value: "138.6 Meters", icon: "frontage" },
   {
     label: "Zoning",
     value: "Agricultural",
