@@ -9,8 +9,8 @@ import MasterPlan from '../components/MasterPlan.astro';
 import DroneVideo from '../components/DroneVideo.astro';
 import TrustSection from '../components/TrustSection.astro';
 import SpaceCalculator from '../components/SpaceCalculator';
-import BrochureDownload from '../components/BrochureDownload';
-import LeadForm from '../components/LeadForm';
+import BrochureDownload from '../components/BrochureDownload.astro';
+import LeadForm from '../components/LeadForm.astro';
 import { site } from '../data/site';
 ---
 
@@ -26,27 +26,7 @@ import { site } from '../data/site';
   <SuitableFor />
   <MasterPlan />
   <DroneVideo />
-  <BrochureDownload client:load />
-  <LeadForm client:load />
+  <BrochureDownload />
+  <LeadForm />
   <TrustSection />
-
-  <!-- Netlify detects forms at build time (React forms POST via netlify-form.ts) -->
-  <form name="site-visit" data-netlify="true" netlify-honeypot="bot-field" hidden>
-    <input type="hidden" name="form-name" value="site-visit" />
-    <input name="bot-field" />
-    <input name="name" />
-    <input name="company" />
-    <input name="phone" />
-    <input name="email" />
-    <input name="required_area" />
-    <input name="timeline" />
-  </form>
-  <form name="brochure" data-netlify="true" netlify-honeypot="bot-field" hidden>
-    <input type="hidden" name="form-name" value="brochure" />
-    <input name="bot-field" />
-    <input name="name" />
-    <input name="company" />
-    <input name="email" />
-    <input name="phone" />
-  </form>
 </Layout>
