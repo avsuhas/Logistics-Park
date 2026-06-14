@@ -1,6 +1,6 @@
 export const site = {
   name: "Meridian Hub",
-  tagline: "Foxconn Corridor Logistics Hub",
+  tagline: "Built for Business. Positioned for Growth",
   subtitle: "Devanahalli Industrial Spaces",
   description:
     "Flexible industrial land, logistics yard & build-to-suit sheds near Devanahalli on the Airport Corridor.",
