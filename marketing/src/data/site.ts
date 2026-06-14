@@ -1,5 +1,5 @@
 export const site = {
-  name: "Meridian Industrial Park",
+  name: "Meridian Hub",
   tagline: "Foxconn Corridor Logistics Hub",
   subtitle: "Devanahalli Industrial Spaces",
   description:
